@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	var latitude, longitude float32 = 59.4165, 24.7994 // Tallinn
+	var latitude, longitude float32 = 59.4165, 24.7994 // Tallinn airport
 	c, err := open_meteo_client.NewClient(time.Second * 5)
 	if err != nil {
 		e := errors.New("fail to create meteo client")

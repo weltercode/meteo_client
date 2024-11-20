@@ -38,7 +38,7 @@ func (c Client) GetTemperature(lat float32, long float32) (ForecastResponse, err
 	var forecast ForecastResponse
 
 	request_url = fmt.Sprintf(
-		"%s?latitude=%f&longitude=%f&hourly=temperature_2m", base_url, lat, long)
+		"%s?latitude=%f&longitude=%f&hourly=temperature_2m&forecast_days=1&timeformat=unixtime", base_url, lat, long)
 	resp, err := c.client.Get(request_url)
 	if err != nil {
 		return forecast, err
@@ -49,7 +49,7 @@ func (c Client) GetTemperature(lat float32, long float32) (ForecastResponse, err
 	if err != nil {
 		return forecast, err
 	}
-
+	//fmt.Println(string(body))
 	var r ForecastResponse
 	if err = json.Unmarshal(body, &r); err != nil {
 		return forecast, err

@@ -35,22 +35,24 @@ func NewClient(timeout time.Duration) (*Client, error) {
 func (c Client) GetTemperature(lat float32, long float32) (ForecastResponse, error) {
 
 	var request_url string
+	var forecast ForecastResponse
+
 	request_url = fmt.Sprintf(
 		"%s?latitude=%f&longitude=%f&hourly=temperature_2m", base_url, lat, long)
 	resp, err := c.client.Get(request_url)
 	if err != nil {
-		return nil, err
+		return forecast, err
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return forecast, err
 	}
 
 	var r ForecastResponse
 	if err = json.Unmarshal(body, &r); err != nil {
-		return nil, err
+		return forecast, err
 	}
 	return r, nil
 }

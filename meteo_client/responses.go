@@ -57,3 +57,22 @@ type ForecastResponse struct {
 	Temeparature_sign string  `json:"temperature_2m"`
 	HourlyData        hourly  `json:"hourly"`
 }
+
+type LocationObj struct {
+	Id          int32   `json:"id"`
+	Name        string  `json:"name"`
+	Latitude    float32 `json:"latitude"`
+	Longitude   float32 `json:"longitude"`
+	Elevation   float32 `json:"elevation"`
+	FeatureCode string  `json:"feature_code"`
+	CountryCode string  `json:"country_code"`
+	AdminId1    int32   `json:"admin1_id"`
+	Timezone    string  `json:"timezone"`
+	Population  int32   `json:"population"`
+	Country_id  int32   `json:"country_id"`
+	Country     string  `json:"country"`
+	Admin1      string  `json:"admin1"`
+}
+type LocationResults struct {
+	Results []LocationObj `json:"results"`
+}
